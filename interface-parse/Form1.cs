@@ -40,6 +40,7 @@ namespace interface_parse
         public Form1()
         {
             InitializeComponent();
+            lblVersion.Text = Application.ProductVersion;
 
         }
 

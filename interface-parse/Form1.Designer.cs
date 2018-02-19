@@ -42,13 +42,15 @@
             this.tabPageParsetextData = new System.Windows.Forms.TabPage();
             this.ParseDelay = new System.Windows.Forms.Button();
             this.tabPageChangeTunnels = new System.Windows.Forms.TabPage();
+            this.PasswordText = new System.Windows.Forms.Label();
+            this.UsernameText = new System.Windows.Forms.Label();
+            this.Password = new System.Windows.Forms.TextBox();
+            this.Username = new System.Windows.Forms.TextBox();
             this.RouterAddressDescription = new System.Windows.Forms.Label();
             this.RouterAddressEnd = new System.Windows.Forms.NumericUpDown();
             this.RouterAddressStart = new System.Windows.Forms.NumericUpDown();
-            this.Username = new System.Windows.Forms.TextBox();
-            this.Password = new System.Windows.Forms.TextBox();
-            this.UsernameText = new System.Windows.Forms.Label();
-            this.PasswordText = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.ServicePLParseGroupBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageParsetextData.SuspendLayout();
@@ -159,6 +161,8 @@
             // 
             // tabPageParsetextData
             // 
+            this.tabPageParsetextData.Controls.Add(this.lblVersion);
+            this.tabPageParsetextData.Controls.Add(this.label1);
             this.tabPageParsetextData.Controls.Add(this.ParseDelay);
             this.tabPageParsetextData.Controls.Add(this.ShellTestButton);
             this.tabPageParsetextData.Controls.Add(this.button1);
@@ -202,6 +206,40 @@
             this.tabPageChangeTunnels.TabIndex = 1;
             this.tabPageChangeTunnels.Text = "Change Tunnels";
             this.tabPageChangeTunnels.UseVisualStyleBackColor = true;
+            // 
+            // PasswordText
+            // 
+            this.PasswordText.AutoSize = true;
+            this.PasswordText.Location = new System.Drawing.Point(142, 178);
+            this.PasswordText.Name = "PasswordText";
+            this.PasswordText.Size = new System.Drawing.Size(53, 13);
+            this.PasswordText.TabIndex = 14;
+            this.PasswordText.Text = "Password";
+            this.PasswordText.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // UsernameText
+            // 
+            this.UsernameText.AutoSize = true;
+            this.UsernameText.Location = new System.Drawing.Point(142, 152);
+            this.UsernameText.Name = "UsernameText";
+            this.UsernameText.Size = new System.Drawing.Size(55, 13);
+            this.UsernameText.TabIndex = 13;
+            this.UsernameText.Text = "Username";
+            // 
+            // Password
+            // 
+            this.Password.Location = new System.Drawing.Point(9, 175);
+            this.Password.Name = "Password";
+            this.Password.PasswordChar = '*';
+            this.Password.Size = new System.Drawing.Size(127, 20);
+            this.Password.TabIndex = 12;
+            // 
+            // Username
+            // 
+            this.Username.Location = new System.Drawing.Point(9, 149);
+            this.Username.Name = "Username";
+            this.Username.Size = new System.Drawing.Size(127, 20);
+            this.Username.TabIndex = 11;
             // 
             // RouterAddressDescription
             // 
@@ -256,39 +294,22 @@
             0,
             0});
             // 
-            // Username
+            // label1
             // 
-            this.Username.Location = new System.Drawing.Point(9, 149);
-            this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(127, 20);
-            this.Username.TabIndex = 11;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "label1";
             // 
-            // Password
+            // lblVersion
             // 
-            this.Password.Location = new System.Drawing.Point(9, 175);
-            this.Password.Name = "Password";
-            this.Password.PasswordChar = '*';
-            this.Password.Size = new System.Drawing.Size(127, 20);
-            this.Password.TabIndex = 12;
-            // 
-            // UsernameText
-            // 
-            this.UsernameText.AutoSize = true;
-            this.UsernameText.Location = new System.Drawing.Point(142, 152);
-            this.UsernameText.Name = "UsernameText";
-            this.UsernameText.Size = new System.Drawing.Size(55, 13);
-            this.UsernameText.TabIndex = 13;
-            this.UsernameText.Text = "Username";
-            // 
-            // PasswordText
-            // 
-            this.PasswordText.AutoSize = true;
-            this.PasswordText.Location = new System.Drawing.Point(142, 178);
-            this.PasswordText.Name = "PasswordText";
-            this.PasswordText.Size = new System.Drawing.Size(53, 13);
-            this.PasswordText.TabIndex = 14;
-            this.PasswordText.Text = "Password";
-            this.PasswordText.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(8, 298);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(0, 13);
+            this.lblVersion.TabIndex = 8;
             // 
             // Form1
             // 
@@ -301,6 +322,7 @@
             this.ServicePLParseGroupBox.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPageParsetextData.ResumeLayout(false);
+            this.tabPageParsetextData.PerformLayout();
             this.tabPageChangeTunnels.ResumeLayout(false);
             this.tabPageChangeTunnels.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RouterAddressEnd)).EndInit();
@@ -332,6 +354,8 @@
         private System.Windows.Forms.TextBox Username;
         private System.Windows.Forms.Label PasswordText;
         private System.Windows.Forms.Label UsernameText;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Label label1;
     }
 }
 

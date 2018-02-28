@@ -40,6 +40,8 @@
             this.OverallProgress = new System.Windows.Forms.ProgressBar();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageParsetextData = new System.Windows.Forms.TabPage();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.ParseDelay = new System.Windows.Forms.Button();
             this.tabPageChangeTunnels = new System.Windows.Forms.TabPage();
             this.PasswordText = new System.Windows.Forms.Label();
@@ -49,8 +51,10 @@
             this.RouterAddressDescription = new System.Windows.Forms.Label();
             this.RouterAddressEnd = new System.Windows.Forms.NumericUpDown();
             this.RouterAddressStart = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblVersion = new System.Windows.Forms.Label();
+            this.btnEncrypt = new System.Windows.Forms.Button();
+            this.txtPlain = new System.Windows.Forms.TextBox();
+            this.txtCrypt = new System.Windows.Forms.TextBox();
+            this.btnDecrypt = new System.Windows.Forms.Button();
             this.ServicePLParseGroupBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageParsetextData.SuspendLayout();
@@ -161,6 +165,10 @@
             // 
             // tabPageParsetextData
             // 
+            this.tabPageParsetextData.Controls.Add(this.btnDecrypt);
+            this.tabPageParsetextData.Controls.Add(this.txtCrypt);
+            this.tabPageParsetextData.Controls.Add(this.txtPlain);
+            this.tabPageParsetextData.Controls.Add(this.btnEncrypt);
             this.tabPageParsetextData.Controls.Add(this.lblVersion);
             this.tabPageParsetextData.Controls.Add(this.label1);
             this.tabPageParsetextData.Controls.Add(this.ParseDelay);
@@ -174,6 +182,23 @@
             this.tabPageParsetextData.TabIndex = 0;
             this.tabPageParsetextData.Text = "Parse Text Data";
             this.tabPageParsetextData.UseVisualStyleBackColor = true;
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(8, 298);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(0, 13);
+            this.lblVersion.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "label1";
             // 
             // ParseDelay
             // 
@@ -294,22 +319,39 @@
             0,
             0});
             // 
-            // label1
+            // btnEncrypt
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "label1";
+            this.btnEncrypt.Location = new System.Drawing.Point(6, 128);
+            this.btnEncrypt.Name = "btnEncrypt";
+            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
+            this.btnEncrypt.TabIndex = 9;
+            this.btnEncrypt.Text = "Encrypt";
+            this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
-            // lblVersion
+            // txtPlain
             // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(8, 298);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(0, 13);
-            this.lblVersion.TabIndex = 8;
+            this.txtPlain.Location = new System.Drawing.Point(6, 157);
+            this.txtPlain.Name = "txtPlain";
+            this.txtPlain.Size = new System.Drawing.Size(100, 20);
+            this.txtPlain.TabIndex = 10;
+            // 
+            // txtCrypt
+            // 
+            this.txtCrypt.Location = new System.Drawing.Point(6, 183);
+            this.txtCrypt.Name = "txtCrypt";
+            this.txtCrypt.Size = new System.Drawing.Size(100, 20);
+            this.txtCrypt.TabIndex = 11;
+            // 
+            // btnDecrypt
+            // 
+            this.btnDecrypt.Location = new System.Drawing.Point(87, 128);
+            this.btnDecrypt.Name = "btnDecrypt";
+            this.btnDecrypt.Size = new System.Drawing.Size(75, 23);
+            this.btnDecrypt.TabIndex = 12;
+            this.btnDecrypt.Text = "Decrypt";
+            this.btnDecrypt.UseVisualStyleBackColor = true;
+            this.btnDecrypt.Click += new System.EventHandler(this.btnDecrypt_Click);
             // 
             // Form1
             // 
@@ -356,6 +398,10 @@
         private System.Windows.Forms.Label UsernameText;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCrypt;
+        private System.Windows.Forms.TextBox txtPlain;
+        private System.Windows.Forms.Button btnEncrypt;
+        private System.Windows.Forms.Button btnDecrypt;
     }
 }
 

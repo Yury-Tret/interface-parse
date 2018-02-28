@@ -11,6 +11,7 @@ using System.IO;
 using System.Threading;
 using Renci.SshNet;
 using Renci.SshNet.Common;
+using clib;
 
 namespace interface_parse
 {
@@ -1088,8 +1089,32 @@ namespace interface_parse
 
             MessageBox.Show("THE END");
 
-        } 
+        }
 
+        private void btnEncrypt_Click(object sender, EventArgs e)
+        {
+            //            txtCrypt.Text =  Encrypt(txtPlain.Text, 17);
+            txtCrypt.Text = CryptoService.EncryptString(txtPlain.Text, "secret");
 
+        }
+
+        public string Encrypt (string message, int key)
+        {
+            string result = "";
+            for (int i = 0; i < message.Length; i++)
+            {
+                result += (char)(message[i] ^ key);
+            }
+            return result;
+        }
+        public string Decrypt(string message, int key)
+        {
+            return Encrypt(message, key);
+        }
+
+        private void btnDecrypt_Click(object sender, EventArgs e)
+        {
+            txtCrypt.Text = CryptoService.DecryptString(txtPlain.Text, "secret");
+        }
     }
 }

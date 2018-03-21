@@ -20,6 +20,7 @@ namespace interface_parse
         Stream myStream = null;
         Stream myStream1 = null;
         int ProgressMultiplier = 1;
+        int ComboBoxSelectedIndex = 0;
 
         struct ServiceProviderInfo
         {
@@ -42,6 +43,7 @@ namespace interface_parse
         {
             InitializeComponent();
             lblVersion.Text = Application.ProductVersion;
+            cboxSelectJobs.SelectedIndex = 0;
 
         }
 
@@ -205,6 +207,7 @@ namespace interface_parse
 
         private void StartSSHButton_Click(object sender, EventArgs e)
         {
+            ComboBoxSelectedIndex = cboxSelectJobs.SelectedIndex;
 
             Thread ChangeTunnelsThread = new Thread(new ThreadStart(ThreadChangeTunnelsJob));
             ChangeTunnelsThread.Start();
@@ -267,15 +270,29 @@ namespace interface_parse
                             }));
                         if (router.TunnelsQuantity > 0)
                         {
-                            router.Connect("10.99.0.1", Router.Username, Router.Password);
-                            router.GetEdgeTunnelInfo();
-
-                            router.OpenShellStreamSession();
-                            router.SyncTunnelInfo();
-                            router.RemoveUnnecessaryCryptoKeys();
 
 
-                            router.Disconnect("edge");
+
+                            switch (ComboBoxSelectedIndex)
+                            {
+                                case 0:
+                                    router.Connect("10.99.0.1", Router.Username, Router.Password);
+                                    router.GetEdgeTunnelInfo();
+                                    router.OpenShellStreamSession();
+                                    router.SyncTunnelInfo();
+                                    router.RemoveUnnecessaryCryptoKeys();
+                                    router.Disconnect("edge");
+                                    break;
+                                case 1:
+                                    router.OpenShellStreamSession();
+                                    router.SetNetflowLines();
+                                    break;
+                                default:
+                                    MessageBox.Show("Job is not selected");
+                                    break;
+
+                            }
+                            
                         }
 
                         router.Disconnect();
@@ -378,6 +395,12 @@ namespace interface_parse
                 public static string GetCryptoIsakmpKey = "do sh run | inc isakmp key";
                 public static string GetCryptoIsakmpSA = "do sh crypto isakmp sa";
                 public static string GetRoutes = "do sh run | inc ip route";
+                public static string SetNetflowInput = "ip flow monitor NTAmon input";
+                public static string SetNetflowOutput = "ip flow monitor NTAmon output";
+                public static string RemoveOldNetflowIngress = "no ip flow ingress";
+                public static string RemoveOldNetflowEgress = "no ip flow egress";
+
+
 
             }
             public struct TunnelInfo
@@ -557,6 +580,30 @@ namespace interface_parse
                 WriteLog("SeparateTunnelNumbers -> OK");
 
             }
+
+            public void SetNetflowLines ()
+            {
+                int i = 0;
+
+                string[] CommandList = new string[] { RouterCommands.EnterConfigureMode };
+                string result = ExecuteShellCommand(CommandList, "EndOfConft");
+
+                int CurrentProgressValue = UpdateProgressMaxValueDelegateObj.Invoke(TunnelsQuantity);
+
+                while (i < TunnelsQuantity)
+                {
+                    UpdateProgressValueDelegateObj.Invoke(string.Concat("Setting Netflow Lines in tunnel", TunnelInfoStruct[i].TunnelNumber), 2);
+                    CommandList = new string[] { string.Concat(RouterCommands.EnterTunnelMode, TunnelInfoStruct[i].TunnelNumber), RouterCommands.SetNetflowInput, RouterCommands.SetNetflowOutput, RouterCommands.RemoveOldNetflowIngress, RouterCommands.RemoveOldNetflowEgress , "exit" };
+                    result = ExecuteShellCommand(CommandList, "EndOfSyncTunnel");
+                    WriteLog(string.Concat("Set Netflow Lines", TunnelInfoStruct[i].TunnelNumber, " ->OK"));
+                    UpdateProgressValueDelegateObj.Invoke(CurrentProgressValue + i + 1, 1);
+                    i++;
+                }
+                CommandList = new string[] { RouterCommands.WriteCommand };
+                result = ExecuteShellCommand(CommandList, "EndOfWrite");
+
+            }
+
             public void SyncTunnelInfo()
             {
                 int i = 0;
@@ -1094,27 +1141,19 @@ namespace interface_parse
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
             //            txtCrypt.Text =  Encrypt(txtPlain.Text, 17);
-            txtCrypt.Text = CryptoService.EncryptString(txtPlain.Text, "secret");
+            txtCrypt.Text = txtPlain.Text;
+            //            txtCrypt.Text = CryptoService.EncryptString(txtPlain.Text, "secret");
+
+            txtPlain.Text = CryptoService.EncryptKey(txtCrypt.Text);
+
 
         }
 
-        public string Encrypt (string message, int key)
-        {
-            string result = "";
-            for (int i = 0; i < message.Length; i++)
-            {
-                result += (char)(message[i] ^ key);
-            }
-            return result;
-        }
-        public string Decrypt(string message, int key)
-        {
-            return Encrypt(message, key);
-        }
 
         private void btnDecrypt_Click(object sender, EventArgs e)
         {
-            txtCrypt.Text = CryptoService.DecryptString(txtPlain.Text, "secret");
+            //txtCrypt.Text = CryptoService.DecryptString(txtPlain.Text, "secret");
+            txtPlain.Text = CryptoService.DecryptKey(txtPlain.Text);
         }
     }
 }

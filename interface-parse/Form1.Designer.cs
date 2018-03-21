@@ -40,6 +40,10 @@
             this.OverallProgress = new System.Windows.Forms.ProgressBar();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageParsetextData = new System.Windows.Forms.TabPage();
+            this.btnDecrypt = new System.Windows.Forms.Button();
+            this.txtCrypt = new System.Windows.Forms.TextBox();
+            this.txtPlain = new System.Windows.Forms.TextBox();
+            this.btnEncrypt = new System.Windows.Forms.Button();
             this.lblVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ParseDelay = new System.Windows.Forms.Button();
@@ -51,10 +55,7 @@
             this.RouterAddressDescription = new System.Windows.Forms.Label();
             this.RouterAddressEnd = new System.Windows.Forms.NumericUpDown();
             this.RouterAddressStart = new System.Windows.Forms.NumericUpDown();
-            this.btnEncrypt = new System.Windows.Forms.Button();
-            this.txtPlain = new System.Windows.Forms.TextBox();
-            this.txtCrypt = new System.Windows.Forms.TextBox();
-            this.btnDecrypt = new System.Windows.Forms.Button();
+            this.cboxSelectJobs = new System.Windows.Forms.ComboBox();
             this.ServicePLParseGroupBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageParsetextData.SuspendLayout();
@@ -183,6 +184,40 @@
             this.tabPageParsetextData.Text = "Parse Text Data";
             this.tabPageParsetextData.UseVisualStyleBackColor = true;
             // 
+            // btnDecrypt
+            // 
+            this.btnDecrypt.Location = new System.Drawing.Point(87, 128);
+            this.btnDecrypt.Name = "btnDecrypt";
+            this.btnDecrypt.Size = new System.Drawing.Size(75, 23);
+            this.btnDecrypt.TabIndex = 12;
+            this.btnDecrypt.Text = "Decrypt";
+            this.btnDecrypt.UseVisualStyleBackColor = true;
+            this.btnDecrypt.Click += new System.EventHandler(this.btnDecrypt_Click);
+            // 
+            // txtCrypt
+            // 
+            this.txtCrypt.Location = new System.Drawing.Point(6, 183);
+            this.txtCrypt.Name = "txtCrypt";
+            this.txtCrypt.Size = new System.Drawing.Size(100, 20);
+            this.txtCrypt.TabIndex = 11;
+            // 
+            // txtPlain
+            // 
+            this.txtPlain.Location = new System.Drawing.Point(6, 157);
+            this.txtPlain.Name = "txtPlain";
+            this.txtPlain.Size = new System.Drawing.Size(100, 20);
+            this.txtPlain.TabIndex = 10;
+            // 
+            // btnEncrypt
+            // 
+            this.btnEncrypt.Location = new System.Drawing.Point(6, 128);
+            this.btnEncrypt.Name = "btnEncrypt";
+            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
+            this.btnEncrypt.TabIndex = 9;
+            this.btnEncrypt.Text = "Encrypt";
+            this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
+            // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
@@ -212,6 +247,7 @@
             // 
             // tabPageChangeTunnels
             // 
+            this.tabPageChangeTunnels.Controls.Add(this.cboxSelectJobs);
             this.tabPageChangeTunnels.Controls.Add(this.PasswordText);
             this.tabPageChangeTunnels.Controls.Add(this.UsernameText);
             this.tabPageChangeTunnels.Controls.Add(this.Password);
@@ -319,39 +355,17 @@
             0,
             0});
             // 
-            // btnEncrypt
+            // cboxSelectJobs
             // 
-            this.btnEncrypt.Location = new System.Drawing.Point(6, 128);
-            this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(75, 23);
-            this.btnEncrypt.TabIndex = 9;
-            this.btnEncrypt.Text = "Encrypt";
-            this.btnEncrypt.UseVisualStyleBackColor = true;
-            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
-            // 
-            // txtPlain
-            // 
-            this.txtPlain.Location = new System.Drawing.Point(6, 157);
-            this.txtPlain.Name = "txtPlain";
-            this.txtPlain.Size = new System.Drawing.Size(100, 20);
-            this.txtPlain.TabIndex = 10;
-            // 
-            // txtCrypt
-            // 
-            this.txtCrypt.Location = new System.Drawing.Point(6, 183);
-            this.txtCrypt.Name = "txtCrypt";
-            this.txtCrypt.Size = new System.Drawing.Size(100, 20);
-            this.txtCrypt.TabIndex = 11;
-            // 
-            // btnDecrypt
-            // 
-            this.btnDecrypt.Location = new System.Drawing.Point(87, 128);
-            this.btnDecrypt.Name = "btnDecrypt";
-            this.btnDecrypt.Size = new System.Drawing.Size(75, 23);
-            this.btnDecrypt.TabIndex = 12;
-            this.btnDecrypt.Text = "Decrypt";
-            this.btnDecrypt.UseVisualStyleBackColor = true;
-            this.btnDecrypt.Click += new System.EventHandler(this.btnDecrypt_Click);
+            this.cboxSelectJobs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxSelectJobs.FormattingEnabled = true;
+            this.cboxSelectJobs.Items.AddRange(new object[] {
+            "Sync Tunnels",
+            "Add Netflow Lines"});
+            this.cboxSelectJobs.Location = new System.Drawing.Point(9, 201);
+            this.cboxSelectJobs.Name = "cboxSelectJobs";
+            this.cboxSelectJobs.Size = new System.Drawing.Size(121, 21);
+            this.cboxSelectJobs.TabIndex = 16;
             // 
             // Form1
             // 
@@ -402,6 +416,7 @@
         private System.Windows.Forms.TextBox txtPlain;
         private System.Windows.Forms.Button btnEncrypt;
         private System.Windows.Forms.Button btnDecrypt;
+        private System.Windows.Forms.ComboBox cboxSelectJobs;
     }
 }
 
